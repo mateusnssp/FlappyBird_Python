@@ -5,15 +5,15 @@ Todo teste é bem-vindo para que o aprendizado seja mais concreto, por isso espe
 ### Etapas:
 
 
-- [] Intro
-- [] How games work
-- [] Getting started in pygame
-- [] Images and surfaces
-- [] Rects, surfaces and our bird
-- [] Adding the pipes
-- [] Collisions (with rects)
-- [] Rotating and animating the bird
-- [] Adding the score as text
-- [] Adding the game over screen
-- [] Adding the sound
+- [ ] Intro
+- [ ] How games work
+- [ ] Getting started in pygame
+- [ ] Images and surfaces
+- [ ] Rects, surfaces and our bird
+- [ ] Adding the pipes
+- [ ] Collisions (with rects)
+- [ ] Rotating and animating the bird
+- [ ] Adding the score as text
+- [ ] Adding the game over screen
+- [ ] Adding the sound
 
