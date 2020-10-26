@@ -2,7 +2,7 @@ Este é um fork de [`code-projects/FlappyBird_Python`](https://github.com/clear-
 
 Todo teste é bem-vindo para que o aprendizado seja mais concreto, por isso espero encontrar anomalias na programação!
 
-### Etapas:
+### Etapas de acordo com o vídeo :
 
 
 - [ ] Intro
