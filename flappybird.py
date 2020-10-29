@@ -46,6 +46,25 @@ def bird_animation():
     new_bird_rect = new_bird.get_rect(center = (100, bird_rect.centery))
     return  new_bird, new_bird_rect
 
+def score_display(game_state):
+    if game_state == 'main_game':
+        score_surface = game_font.render(str(int(score)), True, (255, 255, 255))
+        score_rect = score_surface.get_rect(center = (180, 30))
+        screen.blit(score_surface, score_rect)
+    if game_state == 'game_over':
+        score_surface = game_font.render(f'Pontuação: {int(score)}', True, (255, 255, 255))
+        score_rect = score_surface.get_rect(center=(180, 30))
+        screen.blit(score_surface, score_rect)
+
+        high_score_surface = game_font.render(f'Maior pontuação: {int(high_score)}', True, (255, 255, 255))
+        high_score_rect = high_score_surface.get_rect(center=(180, 60))
+        #screen.blit(high_score_surface, high_score_rect)
+
+def upgate_score(score, high_score):
+    if score > high_score:
+        high_score = score
+    return high_score
+
 pygame.init()
 
 
@@ -57,6 +76,11 @@ SCREEN_HEIGHT = 672
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
+
+#game_font = pygame.font.Font('04B_19.ttf', 40) - issue
+font = pygame.font.get_default_font()
+game_font = pygame.font.SysFont(font, 40)
+
 
 gravity = 1
 bird_movement = 0
@@ -97,9 +121,10 @@ SPAWNPIPE = pygame.USEREVENT
 pygame.time.set_timer(SPAWNPIPE, 2000)
 pipe_height =  [380, 410, 440, 470]  # Sequência: Maior altura > menor altura
 
+game_over_surface = pygame.transform.scale2x(pygame.image.load('assets/message.png').convert_alpha())
+game_over_rect = game_over_surface.get_rect(center = (189, 336))
 
-
-
+flap_sound = pygame.mixer.Sound('sound/sfx_wing.wav')
 
 while True:
     for event in pygame.event.get():
@@ -110,12 +135,14 @@ while True:
             if game_active and event.key == pygame.K_SPACE or event.key == pygame.K_UP:
                 bird_movement = 0
                 bird_movement -= 15
+                flap_sound.play()
         if game_active == False and (event.key == pygame.K_SPACE or event.key == pygame.K_UP):
             game_active = True
             pipe_list.clear()
             bird_rect.center = (100, 336)
             bird_movement = 0
-
+            score = 0
+ 
         if event.type == SPAWNPIPE:
             pipe_list.extend(create_pipe())
             print(pipe_list)
@@ -150,6 +177,14 @@ while True:
         # Pipes
         pipe_list = move_pipes(pipe_list)
         draw_pipes(pipe_list)
+
+        score += 0.01
+        score_display('main_game')
+
+    else:
+        screen.blit(game_over_surface, game_over_rect)
+        high_score = upgate_score(score, high_score)
+        score_display('game_over')
 
 
     # Floor
