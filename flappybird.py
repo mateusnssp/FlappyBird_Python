@@ -1,4 +1,7 @@
-import pygame, sys, random
+import pygame, sys, random, platform
+
+separation_bar = r'\\' if platform.system() == 'Windows' else '/'
+b = separation_bar
 
 def draw_bg():
     screen.blit(bg_surface, (bg_x_position, 0))
@@ -92,18 +95,18 @@ game_active = True
 score = 0
 high_score = 0
 
-bg_surface = pygame.image.load('assets/background-night.png').convert()
+bg_surface = pygame.image.load(f'assets{b}background-night.png').convert()
 bg_surface = pygame.transform.scale(bg_surface, [378, 672])
 bg_x_position = 0
 
-floor_surface = pygame.image.load('assets/base.png').convert()
+floor_surface = pygame.image.load(f'assets{b}base.png').convert()
 #floor_surface = pygame.transform.scale2x(floor_surface)
 floor_surface = pygame.transform.scale(floor_surface, [378, pygame.Surface.get_height(floor_surface)])
 floor_x_pos = 0
 
-bird_downflap = pygame.transform.scale2x(pygame.image.load('assets/bluebird-downflap.png').convert_alpha())
-bird_midflap = pygame.transform.scale2x(pygame.image.load('assets/bluebird-midflap.png').convert_alpha())
-bird_upflap = pygame.transform.scale2x(pygame.image.load('assets/bluebird-upflap.png').convert_alpha())
+bird_downflap = pygame.transform.scale2x(pygame.image.load(f'assets{b}bluebird-downflap.png').convert_alpha())
+bird_midflap = pygame.transform.scale2x(pygame.image.load(f'assets{b}bluebird-midflap.png').convert_alpha())
+bird_upflap = pygame.transform.scale2x(pygame.image.load(f'assets{b}bluebird-upflap.png').convert_alpha())
 bird_frames = [bird_downflap, bird_midflap, bird_upflap]
 bird_index = 0
 bird_surface = bird_frames[bird_index]
@@ -116,19 +119,19 @@ pygame.time.set_timer(BIRDFLAP, 200)
 # bird_surface = pygame.transform.scale2x(bird_surface)
 # bird_rect = bird_surface.get_rect(center = (100,512))
 
-pipe_surface = pygame.image.load('assets/pipe-green.png')
+pipe_surface = pygame.image.load(f'assets{b}pipe-green.png')
 #pipe_surface = pygame.transform.scale2x(pipe_surface)
 pipe_list = []
 SPAWNPIPE = pygame.USEREVENT
 pygame.time.set_timer(SPAWNPIPE, 2000)
 pipe_height = [380, 410, 440, 470] # Sequência: Maior altura > menor altura
 
-game_over_surface = pygame.transform.scale2x(pygame.image.load('assets/message.png').convert_alpha())
+game_over_surface = pygame.transform.scale2x(pygame.image.load(f'assets{b}message.png').convert_alpha())
 game_over_rect = game_over_surface.get_rect(center=(189, 336))
 
-flap_sound = pygame.mixer.Sound('sound/sfx_wing.wav')
-death_sound = pygame.mixer.Sound('sound/sfx_hit.wav')
-score_sound = pygame.mixer.Sound('sound/sfx_point.wav')
+flap_sound = pygame.mixer.Sound(f'sound{b}sfx_wing.wav')
+death_sound = pygame.mixer.Sound(f'sound{b}sfx_hit.wav')
+score_sound = pygame.mixer.Sound(f'sound{b}sfx_point.wav')
 score_sound_countdown = 100
 
 while True:
