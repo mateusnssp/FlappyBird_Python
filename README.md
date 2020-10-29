@@ -13,7 +13,7 @@ Todo teste é bem-vindo para que o aprendizado seja mais concreto, por isso espe
 - [X] Adding the pipes
 - [X] Collisions (with rects)
 - [X] Rotating and animating the bird
-- [ ] Adding the score as text
-- [ ] Adding the game over screen
-- [ ] Adding the sound
+- [X] Adding the score as text
+- [X] Adding the game over screen
+- [X] Adding the sound
 
