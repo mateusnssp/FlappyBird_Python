@@ -1,5 +1,6 @@
 import pygame, sys, random, platform
 
+
 separation_bar = r'\\' if platform.system() == 'Windows' else '/'
 b = separation_bar
 
